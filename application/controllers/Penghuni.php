@@ -16,7 +16,9 @@ class Penghuni extends CI_Controller {
 
   public function tambah() {
     if ($_POST) {
-      $this->Penghuni_model->insert($this->input->post());
+      $post = $this->input->post();
+      $this->Penghuni_model->insert($post);
+      $this->Kamar_model->update($post['kamar_id'], ['status' => 'terisi']);
       redirect('penghuni');
     }
     $data['kamar'] = $this->Kamar_model->get_all();
@@ -36,7 +38,15 @@ class Penghuni extends CI_Controller {
   }
 
   public function hapus($id) {
-    $this->Penghuni_model->delete($id);
+    $penghuni = $this->Penghuni_model->get($id);
+
+    if ($penghuni) {
+      // Ubah status kamar jadi 'kosong'
+      $this->Kamar_model->update($penghuni->kamar_id, ['status' => 'kosong']);
+      
+      // Hapus data penghuni
+      $this->Penghuni_model->delete($id);
+    }
     redirect('penghuni');
   }
 }

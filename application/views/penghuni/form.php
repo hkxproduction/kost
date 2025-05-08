@@ -28,9 +28,15 @@
     <select name="kamar_id" required style="width: 100%; padding: 10px 14px; border: 1px solid #D1D5DB; border-radius: 6px; font-size: 14px;">
       <option value="">-- Pilih Kamar --</option>
       <?php foreach ($kamar as $k): ?>
-        <option value="<?= $k->id ?>" <?= (isset($penghuni) && $penghuni->kamar_id == $k->id) ? 'selected' : '' ?>>
-          <?= $k->nomor_kamar ?>
-        </option>
+        <?php
+          $kamar_terisi = $k->status === 'terisi';
+          $dipilih = isset($penghuni) && $penghuni->kamar_id == $k->id;
+          if (!$kamar_terisi || $dipilih): // Tampilkan jika kamar kosong, atau sedang diedit dan itu kamarnya
+        ?>
+          <option value="<?= $k->id ?>" <?= $dipilih ? 'selected' : '' ?>>
+            <?= $k->nomor_kamar ?> <?= $kamar_terisi && $dipilih ? '(Sedang Ditempati)' : '' ?>
+          </option>
+        <?php endif; ?>
       <?php endforeach ?>
     </select>
   </div>
