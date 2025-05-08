@@ -28,7 +28,11 @@ class Penghuni extends CI_Controller {
 
   public function edit($id) {
     if ($_POST) {
+      $post = $this->input->post();
       $this->Penghuni_model->update($id, $this->input->post());
+      if ($post['status'] == 'keluar') {
+        $this->Kamar_model->update($post['kamar_id'], ['status' => 'kosong']);
+      }
       redirect('penghuni');
     }
     $data['kamar'] = $this->Kamar_model->get_all();
