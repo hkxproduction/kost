@@ -26,12 +26,12 @@
         data-gambar="<?= !empty($k->gambar) ? base_url('uploads/kamar/' . $k->gambar) : 'https://placehold.co/600x400' ?>"
         data-status="<?= $k->status ?>"
         style="cursor: pointer; border-bottom: 1px solid #E5E7EB; background-color: <?= $i % 2 == 0 ? '#FFFFFF' : '#F3F4F6' ?>;">
-      <td style="padding: 12px;"><?= $i + 1 ?></td>
-      <td style="padding: 12px;"><?= $k->nomor_kamar ?></td>
-      <td style="padding: 12px;"><?= $k->tipe ?></td>
-      <td style="padding: 12px;">Rp<?= number_format($k->harga, 0, ',', '.') ?></td>
-      <td style="padding: 12px;"><?= !empty($k->fasilitas) ? nl2br(htmlspecialchars($k->fasilitas ?? '')) : '-' ?></td>
-      <td style="padding: 12px;">
+      <td style="padding: 12px;" onclick='tampilkanModalGambar(<?= $k->gambar; ?>)' ><?= $i + 1 ?></td>
+      <td style="padding: 12px;" onclick='tampilkanModalGambar(<?= $k->gambar; ?>)' ><?= $k->nomor_kamar ?></td>
+      <td style="padding: 12px;" onclick='tampilkanModalGambar(<?= $k->gambar; ?>)' ><?= $k->tipe ?></td>
+      <td style="padding: 12px;" onclick='tampilkanModalGambar(<?= $k->gambar; ?>)' >Rp<?= number_format($k->harga, 0, ',', '.') ?></td>
+      <td style="padding: 12px;" onclick='tampilkanModalGambar(<?= $k->gambar; ?>)' ><?= !empty($k->fasilitas) ? nl2br(htmlspecialchars($k->fasilitas ?? '')) : '-' ?></td>
+      <td style="padding: 12px;" onclick='tampilkanModalGambar(<?= $k->gambar; ?>)' >
         <?php 
           $gambarList = json_decode($k->gambar, true);
           $gambarPertama = !empty($gambarList[0]) ? base_url('uploads/kamar/' . $gambarList[0]) : 'https://placehold.co/600x400';
@@ -39,10 +39,10 @@
         <img src="<?= $gambarPertama ?>" 
             alt="Gambar Kamar" 
             style="width: 120px; height: 80px; object-fit: cover; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" 
-            onclick='tampilkanModalGambar(<?= $k->gambar; ?>)' />
+            />
       </td>
       <td style="padding: 12px;">
-        <span style="padding: 6px 12px; background-color: <?= $k->status == 'kosong' ? '#D1FAE5' : '#FECACA' ?>; color: <?= $k->status == 'kosong' ? '#065F46' : '#991B1B' ?>; border-radius: 4px; font-size: 14px;"><?= $k->status ?></span>
+        <span style="padding: 6px 12px; background-color: <?= $k->status == 'kosong' ? '#D1FAE5' : '#FECACA' ?>; color: <?= $k->status == 'kosong' ? '#065F46' : '#991B1B' ?>; border-radius: 4px; font-size: 14px;" onclick='tampilkanModalGambar(<?= $k->gambar; ?>)' ><?= $k->status ?></span>
       </td>
       <td style="padding: 12px;">
         <a href="<?= site_url('kamar/edit/'.$k->id) ?>" style="color: #2563EB; text-decoration: none; margin-right: 8px;">Edit</a>
