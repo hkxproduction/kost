@@ -2,7 +2,7 @@
   <?= isset($kamar) ? 'Edit Kamar' : 'Tambah Kamar' ?>
 </h2>
 
-<form method="post" action="" style="max-width: 500px; font-family: Arial, sans-serif; background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.06);">
+<form method="post" action="" style="max-width: 100%; height: 100%; font-family: Arial, sans-serif; background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.06);">
   <div style="margin-bottom: 16px;">
     <label style="display: block; margin-bottom: 6px; color: #374151; font-weight: 600;">Nomor Kamar</label>
     <input type="text" name="nomor_kamar" value="<?= isset($kamar) ? $kamar->nomor_kamar : '' ?>" required style="width: 100%; padding: 10px 14px; border: 1px solid #D1D5DB; border-radius: 6px; font-size: 14px;"/>
