@@ -24,10 +24,10 @@ class Kamar extends CI_Controller {
   public function tambah() {
     if ($_POST) {
       // Proses upload gambar
-      // $upload_data = $this->_do_upload();
-      // if ($upload_data) {
-      //   $_POST['gambar'] = $upload_data['file_name'];
-      // }
+      $upload_data = $this->_do_upload();
+      if ($upload_data) {
+        $_POST['gambar'] = $upload_data['file_name'];
+      }
       
       // Insert data kamar ke database
       $this->Kamar_model->insert($this->input->post());
@@ -52,8 +52,8 @@ class Kamar extends CI_Controller {
       $upload_data = $this->_do_upload();
       if ($upload_data) {
         // Hapus gambar lama jika ada
-        if ($kamar->gambar && file_exists('./uploads/' . $kamar->gambar)) {
-          unlink('./uploads/' . $kamar->gambar);
+        if ($kamar->gambar && file_exists('./uploads/kamar/' . $kamar->gambar)) {
+          unlink('./uploads/kamar/' . $kamar->gambar);
         }
         
         $_POST['gambar'] = $upload_data['file_name'];
@@ -81,8 +81,8 @@ class Kamar extends CI_Controller {
     $kamar = $this->Kamar_model->get($id);
     
     // Hapus gambar lama jika ada
-    if ($kamar->gambar && file_exists('./uploads/' . $kamar->gambar)) {
-      unlink('./uploads/' . $kamar->gambar);
+    if ($kamar->gambar && file_exists('./uploads/kamar/' . $kamar->gambar)) {
+      unlink('./uploads/kamar/' . $kamar->gambar);
     }
 
     // Hapus data kamar dari database
@@ -94,7 +94,7 @@ class Kamar extends CI_Controller {
 
   // Fungsi untuk meng-handle upload gambar
   private function _do_upload() {
-    $config['upload_path'] = './uploads/';
+    $config['upload_path'] = './uploads/kamar/';
     $config['allowed_types'] = 'jpg|jpeg|png|gif';
     $config['max_size'] = 2048; // Maksimal ukuran file 2MB
     $config['encrypt_name'] = TRUE; // Nama file dienkripsi untuk menghindari duplikasi
