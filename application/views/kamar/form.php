@@ -21,8 +21,8 @@
   <div style="margin-bottom: 24px;">
     <label style="display: block; margin-bottom: 6px; color: #374151; font-weight: 600;">Status</label>
     <select name="status" required style="width: 100%; padding: 10px 14px; border: 1px solid #D1D5DB; border-radius: 6px; font-size: 14px;">
-      <option value="Tersedia" <?= isset($kamar) && $kamar->status == 'Tersedia' ? 'selected' : '' ?>>Tersedia</option>
-      <option value="Tidak Tersedia" <?= isset($kamar) && $kamar->status == 'Tidak Tersedia' ? 'selected' : '' ?>>Tidak Tersedia</option>
+      <option value="kosong" <?= isset($kamar) && $kamar->status == 'kosong' ? 'selected' : '' ?>>Tersedia</option>
+      <option value="terisi" <?= isset($kamar) && $kamar->status == 'terisi' ? 'selected' : '' ?>>Tidak Tersedia</option>
     </select>
   </div>
 

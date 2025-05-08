@@ -21,7 +21,7 @@
       <td style="padding: 12px;"><?= $k->tipe ?></td>
       <td style="padding: 12px;">Rp<?= number_format($k->harga, 0, ',', '.') ?></td>
       <td style="padding: 12px;">
-        <span style="padding: 6px 12px; background-color: <?= $k->status == 'Tersedia' ? '#D1FAE5' : '#FECACA' ?>; color: <?= $k->status == 'Tersedia' ? '#065F46' : '#991B1B' ?>; border-radius: 4px; font-size: 14px;"><?= $k->status ?></span>
+        <span style="padding: 6px 12px; background-color: <?= $k->status == 'kosong' ? '#D1FAE5' : '#FECACA' ?>; color: <?= $k->status == 'kosong' ? '#065F46' : '#991B1B' ?>; border-radius: 4px; font-size: 14px;"><?= $k->status ?></span>
       </td>
       <td style="padding: 12px;">
         <a href="<?= site_url('kamar/edit/'.$k->id) ?>" style="color: #2563EB; text-decoration: none; margin-right: 8px;">Edit</a>
