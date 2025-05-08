@@ -10,7 +10,8 @@ class Penghuni extends CI_Controller {
 
   public function index() {
     $data['penghuni'] = $this->Penghuni_model->get_all();
-    $this->load->view('penghuni/index', $data);
+    $data['content_view'] = 'penghuni/index';
+    $this->load->view('layouts/main', $data);
   }
 
   public function tambah() {
@@ -19,7 +20,8 @@ class Penghuni extends CI_Controller {
       redirect('penghuni');
     }
     $data['kamar'] = $this->Kamar_model->get_all();
-    $this->load->view('penghuni/form', $data);
+    $data['content_view'] = 'penghuni/form';
+    $this->load->view('layouts/main', $data);
   }
 
   public function edit($id) {
@@ -29,7 +31,8 @@ class Penghuni extends CI_Controller {
     }
     $data['kamar'] = $this->Kamar_model->get_all();
     $data['penghuni'] = $this->Penghuni_model->get($id);
-    $this->load->view('penghuni/form', $data);
+    $data['content_view'] = 'penghuni/form';
+    $this->load->view('layouts/main', $data);
   }
 
   public function hapus($id) {

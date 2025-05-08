@@ -10,7 +10,8 @@ class Pembayaran extends CI_Controller {
 
   public function index() {
     $data['pembayaran'] = $this->Pembayaran_model->get_all();
-    $this->load->view('pembayaran/index', $data);
+    $data['content_view'] = 'pembayaran/index';
+    $this->load->view('layouts/main', $data);
   }
 
   public function tambah() {
@@ -19,7 +20,8 @@ class Pembayaran extends CI_Controller {
       redirect('pembayaran');
     }
     $data['penghuni'] = $this->Penghuni_model->get_all();
-    $this->load->view('pembayaran/form', $data);
+    $data['content_view'] = 'pembayaran/form';
+    $this->load->view('layouts/main', $data);
   }
 
   public function edit($id) {
@@ -29,7 +31,8 @@ class Pembayaran extends CI_Controller {
     }
     $data['penghuni'] = $this->Penghuni_model->get_all();
     $data['pembayaran'] = $this->Pembayaran_model->get($id);
-    $this->load->view('pembayaran/form', $data);
+    $data['content_view'] = 'pembayaran/form';
+    $this->load->view('layouts/main', $data);
   }
 
   public function hapus($id) {
