@@ -24,10 +24,10 @@ class Kamar extends CI_Controller {
   public function tambah() {
     if ($_POST) {
       // Proses upload gambar
-      $upload_data = $this->_do_upload();
-      if ($upload_data) {
-        $_POST['gambar'] = $upload_data['file_name'];
-      }
+      // $upload_data = $this->_do_upload();
+      // if ($upload_data) {
+      //   $_POST['gambar'] = $upload_data['file_name'];
+      // }
       
       // Insert data kamar ke database
       $this->Kamar_model->insert($this->input->post());
@@ -37,7 +37,7 @@ class Kamar extends CI_Controller {
     }
 
     // Menetapkan view konten untuk digunakan dalam layout utama
-    $data['content_view'] = 'kamar/tambah';
+    $data['content_view'] = 'kamar/form';
     
     // Memuat layout utama dengan konten yang sesuai
     $this->load->view('layouts/main', $data);

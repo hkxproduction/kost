@@ -1,3 +1,4 @@
+<h2 style="font-family: Arial, sans-serif; font-size: 24px; color: #333; margin-bottom: 40px;"></h2>
 <h2 style="font-family: Arial, sans-serif; font-size: 24px; color: #333; margin-bottom: 20px;">Daftar Kamar</h2>
 
 <a href="<?= site_url('kamar/tambah') ?>" style="display: inline-block; padding: 10px 16px; background-color: #4F46E5; color: white; border-radius: 6px; text-decoration: none; font-weight: bold; margin-bottom: 20px;">+ Tambah Kamar</a>
@@ -9,6 +10,8 @@
       <th style="padding: 12px; text-align: left; border-bottom: 2px solid #E5E7EB;">Nomor</th>
       <th style="padding: 12px; text-align: left; border-bottom: 2px solid #E5E7EB;">Tipe</th>
       <th style="padding: 12px; text-align: left; border-bottom: 2px solid #E5E7EB;">Harga</th>
+      <th style="padding: 12px; text-align: left; border-bottom: 2px solid #E5E7EB;">Fasilitas</th>
+      <th style="padding: 12px; text-align: left; border-bottom: 2px solid #E5E7EB;">Gambar</th>
       <th style="padding: 12px; text-align: left; border-bottom: 2px solid #E5E7EB;">Status</th>
       <th style="padding: 12px; text-align: left; border-bottom: 2px solid #E5E7EB;">Aksi</th>
     </tr>
@@ -20,6 +23,10 @@
       <td style="padding: 12px;"><?= $k->nomor_kamar ?></td>
       <td style="padding: 12px;"><?= $k->tipe ?></td>
       <td style="padding: 12px;">Rp<?= number_format($k->harga, 0, ',', '.') ?></td>
+      <td style="padding: 12px;"><?= !empty($k->fasilitas) ? nl2br(htmlspecialchars($k->fasilitas)) : '-' ?></td>
+      <td style="padding: 12px;">
+        <img src="<?= !empty($k->gambar) ? base_url('uploads/kamar/' . $k->gambar) : 'https://placehold.co/600x400' ?>" alt="Gambar Kamar" style="width: 120px; height: 80px; object-fit: cover; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+      </td>
       <td style="padding: 12px;">
         <span style="padding: 6px 12px; background-color: <?= $k->status == 'kosong' ? '#D1FAE5' : '#FECACA' ?>; color: <?= $k->status == 'kosong' ? '#065F46' : '#991B1B' ?>; border-radius: 4px; font-size: 14px;"><?= $k->status ?></span>
       </td>

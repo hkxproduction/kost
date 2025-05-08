@@ -10,11 +10,11 @@ class Kamar_model extends CI_Model {
 
   public function insert($data) {
     // Filter field yang diizinkan
-    $filtered = [
-      'nama' => $data['nama'] ?? null,
-      'gambar' => $data['gambar'] ?? null,
-    ];
-    return $this->db->insert('kamar', $filtered);
+    // $filtered = [
+    //   'nama' => $data['nama'] ?? null,
+    //   'gambar' => $data['gambar'] ?? null,
+    // ];
+    return $this->db->insert('kamar', $data);
   }
 
   public function update($id, $data) {
