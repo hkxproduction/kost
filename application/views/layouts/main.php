@@ -116,7 +116,6 @@
     <div class="sidebar" id="sidebar">
       <a href="<?= site_url('kamar') ?>">🏠 Kamar</a>
       <a href="<?= site_url('penghuni') ?>">👤 Penghuni</a>
-      <a href="<?= site_url('pembayaran') ?>">💳 Pembayaran</a>
     </div>
 
     <button class="toggle-btn" id="toggleBtn" onclick="toggleSidebar()">☰</button>
