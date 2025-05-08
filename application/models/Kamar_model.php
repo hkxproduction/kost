@@ -9,11 +9,22 @@ class Kamar_model extends CI_Model {
   }
 
   public function insert($data) {
-    return $this->db->insert('kamar', $data);
+    // Filter field yang diizinkan
+    $filtered = [
+      'nama' => $data['nama'] ?? null,
+      'gambar' => $data['gambar'] ?? null,
+    ];
+    return $this->db->insert('kamar', $filtered);
   }
 
   public function update($id, $data) {
-    return $this->db->where('id', $id)->update('kamar', $data);
+    $filtered = [
+      'nama' => $data['nama'] ?? null,
+    ];
+    if (!empty($data['gambar'])) {
+      $filtered['gambar'] = $data['gambar'];
+    }
+    return $this->db->where('id', $id)->update('kamar', $filtered);
   }
 
   public function delete($id) {
