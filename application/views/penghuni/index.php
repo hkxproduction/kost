@@ -1,3 +1,4 @@
+<h2 style="font-family: Arial, sans-serif; font-size: 24px; color: #333; margin-bottom: 40px;"></h2>
 <h2 style="font-family: Arial, sans-serif; font-size: 24px; color: #333; margin-bottom: 20px;">Daftar Penghuni</h2>
 
 <a href="<?= site_url('penghuni/tambah') ?>" style="display: inline-block; padding: 10px 16px; background-color: #4F46E5; color: white; border-radius: 6px; text-decoration: none; font-weight: bold; margin-bottom: 20px;">+ Tambah Penghuni</a>
