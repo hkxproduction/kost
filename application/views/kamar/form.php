@@ -16,17 +16,18 @@
 
   <div style="margin-bottom: 16px;">
     <label style="display: block; margin-bottom: 6px; color: #374151; font-weight: 600;">Harga</label>
-    <input type="number" name="harga" value="<?= isset($kamar) ? $kamar->harga : '' ?>" required style="width: 100%; padding: 10px 14px; border: 1px solid #D1D5DB; border-radius: 6px; font-size: 14px;"/>
+    <input type="text" id="harga" name="harga" value="<?= isset($kamar) ? number_format($kamar->harga, 0, ',', '.') : '' ?>" required 
+          style="width: 100%; padding: 10px 14px; border: 1px solid #D1D5DB; border-radius: 6px; font-size: 14px;"/>
   </div>
 
   <!-- Input Gambar with Preview -->
   <div style="margin-bottom: 16px;">
-    <label style="display: block; margin-bottom: 6px; color: #374151; font-weight: 600;">Gambar Kamar</label>
-    <input type="file" name="gambar" id="gambar" style="width: 100%; padding: 10px 14px; border: 1px solid #D1D5DB; border-radius: 6px; font-size: 14px; color: #6B7280;" onchange="previewImage()"/>
-    <small style="color: #6B7280;">Ukuran maksimal gambar: 2MB, format: JPG, PNG, GIF</small>
-    <div id="imagePreview" style="margin-top: 10px;">
-      <!-- Image Preview will appear here -->
-    </div>
+    <label style="display: block; margin-bottom: 6px; color: #374151; font-weight: 600;">Gambar Kamar (maks. 6 gambar)</label>
+    <input type="file" name="gambar[]" id="gambar" accept="image/*" multiple 
+          style="width: 100%; padding: 10px 14px; border: 1px solid #D1D5DB; border-radius: 6px; font-size: 14px; color: #6B7280;" 
+          onchange="previewImages()" />
+    <small style="color: #6B7280;">Ukuran maksimal tiap gambar: 2MB, format: JPG, PNG, GIF</small>
+    <div id="imagePreview" style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 10px;"></div>
   </div>
 
   <!-- Fasilitas Text Input -->
@@ -51,18 +52,40 @@
 </form>
 
 <script>
-  function previewImage() {
-    const file = document.getElementById('gambar').files[0];
-    const reader = new FileReader();
-    const imagePreview = document.getElementById('imagePreview');
-    
-    if (file) {
+  function previewImages() {
+    const files = document.getElementById('gambar').files;
+    const preview = document.getElementById('imagePreview');
+    preview.innerHTML = '';
+
+    if (files.length > 6) {
+      alert('Maksimal upload 6 gambar.');
+      document.getElementById('gambar').value = ''; // Reset input
+      return;
+    }
+
+    Array.from(files).forEach(file => {
+      if (file.size > 2 * 1024 * 1024) {
+        alert(`File "${file.name}" terlalu besar (maks 2MB).`);
+        return;
+      }
+
+      const reader = new FileReader();
       reader.onload = function(e) {
-        imagePreview.innerHTML = `<img src="${e.target.result}" alt="Image Preview" style="max-width: 100%; max-height: 300px; border-radius: 8px; margin-top: 10px;" />`;
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.style.maxWidth = '150px';
+        img.style.maxHeight = '150px';
+        img.style.borderRadius = '8px';
+        img.style.objectFit = 'cover';
+        preview.appendChild(img);
       };
       reader.readAsDataURL(file);
-    } else {
-      imagePreview.innerHTML = '';
-    }
+    });
   }
+
+  const hargaInput = document.getElementById('harga');
+  hargaInput.addEventListener('keyup', function(e) {
+    let value = this.value.replace(/[^\d]/g, '');
+    this.value = new Intl.NumberFormat('id-ID').format(value);
+  });
 </script>
