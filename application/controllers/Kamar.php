@@ -18,7 +18,7 @@ class Kamar extends CI_Controller {
       $this->Kamar_model->insert($this->input->post());
       redirect('kamar');
     }
-    $this->load->view('kamar/form');
+    $this->load->view('kamar/tambah');
   }
 
   public function edit($id) {
